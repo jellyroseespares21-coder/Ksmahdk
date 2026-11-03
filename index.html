@@ -9,12 +9,14 @@
 </head>
 <body>
 
+<body>
 <script>
-    // Check if the user is logged in
+    // Prevent access without login
     if (localStorage.getItem("isLoggedIn") !== "true") {
-        window.location.replace("login.html");
+        window.location.replace("./login.html");
     }
 </script>
+
  <header>
  <h1>Welcome to My Personal Website</h1>
  </header>
@@ -185,19 +187,19 @@ Discover my hobbies,interest,and favorite things that make me who I am. Let's ex
  </script>
 <script>
 // Logout function with confirmation
+
 function confirmLogout() {
- // Show a confirmation message to the user
- const confirmLogout = confirm("Are you sure you want to log out?");
- // If the user confirms, proceed with logging out
- if (confirmLogout) {
- // Mark the user as logged out in localStorage (if used)
- localStorage.removeItem('isLoggedIn'); // Or any other keys related to login credentials
- // Redirect to the login page
- window.location.href = 'login.html';
- } else {
- // If the user cancels, do nothing
- return;
- }
+
+    const confirmAction = confirm("Are you sure you want to log out?");
+
+    if (confirmAction) {
+
+        localStorage.removeItem("isLoggedIn");
+
+        alert("You have successfully logged out!");
+
+        window.location.replace("./login.html");
+    }
 }
 </script>
 </body>
