@@ -62,162 +62,170 @@
     </div>
 
     <script>
-        const authForm = document.getElementById("authForm");
-        const formTitle = document.getElementById("formTitle");
-        const formSubtitle = document.getElementById("formSubtitle");
-        const username = document.getElementById("username");
-        const password = document.getElementById("password");
-        const confirmPassword = document.getElementById("confirmPassword");
-        const confirmGroup = document.getElementById("confirmGroup");
-        const showPassword = document.getElementById("showPassword");
-        const submitButton = document.getElementById("submitButton");
-        const toggleText = document.getElementById("toggleText");
-        const toggleLink = document.getElementById("toggleLink");
-        const errorMessage = document.getElementById("errorMessage");
-        const passwordMatchMessage =
-            document.getElementById("passwordMatchMessage");
+          
+const authForm = document.getElementById("authForm");
+const formTitle = document.getElementById("formTitle");
+const formSubtitle = document.getElementById("formSubtitle");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+const confirmPassword = document.getElementById("confirmPassword");
+const confirmGroup = document.getElementById("confirmGroup");
+const showPassword = document.getElementById("showPassword");
+const submitButton = document.getElementById("submitButton");
+const toggleText = document.getElementById("toggleText");
+const errorMessage = document.getElementById("errorMessage");
+const passwordMatchMessage = document.getElementById("passwordMatchMessage");
 
-        let isLogin = true;
+let isLogin = true;
 
-        function clearMessages() {
-            errorMessage.textContent = "";
-            passwordMatchMessage.textContent = "";
-            passwordMatchMessage.className = "";
-        }
+// Initial settings
+confirmPassword.disabled = true;
 
-        function toggleForm(event) {
-            if (event) event.preventDefault();
-
-            isLogin = !isLogin;
-            authForm.reset();
-            clearMessages();
-
-            showPassword.checked = false;
-            password.type = "password";
-            confirmPassword.type = "password";
-
-            if (isLogin) {
-                formTitle.textContent = "Welcome Back!";
-                formSubtitle.textContent = "Login to your account";
-                confirmGroup.classList.add("hidden");
-
-                confirmPassword.required = false;
-                confirmPassword.disabled = true;
-                password.autocomplete = "current-password";
-
-                submitButton.textContent = "Login";
-                toggleText.innerHTML =
-                    `Don't have an account? <a href="#" id="toggleLink">Sign Up</a>`;
-            } else {
-                formTitle.textContent = "Create Account";
-                formSubtitle.textContent = "Sign up to get started";
-                confirmGroup.classList.remove("hidden");
-
-                confirmPassword.required = true;
-                confirmPassword.disabled = false;
-                password.autocomplete = "new-password";
-
-                submitButton.textContent = "Sign Up";
-                toggleText.innerHTML =
-                    `Already have an account? <a href="#" id="toggleLink">Login</a>`;
-            }
-
-            document.getElementById("toggleLink")
-                .addEventListener("click", toggleForm);
-        }
-
-        toggleLink.addEventListener("click", toggleForm);
-
-        // Show or hide both password fields.
-        showPassword.addEventListener("change", function () {
-            const type = this.checked ? "text" : "password";
-            password.type = type;
-            confirmPassword.type = type;
-        });
-
-        // Check whether the passwords match.
-         function checkPasswordMatch() {
-            const first = password.value;
-            const second = confirmPassword.value;
-
-            if (!second) {
-                passwordMatchMessage.textContent = "";
-                passwordMatchMessage.className = "";
-            } else if (first === second) {
-                passwordMatchMessage.textContent = "Passwords match!";
-                passwordMatchMessage.className = "success-message";
-            } else {
-                passwordMatchMessage.textContent =
-                    "Passwords do not match.";
-                passwordMatchMessage.className = "error-message";
-            }
-        }
-
-        password.addEventListener("input", checkPasswordMatch);
-        confirmPassword.addEventListener("input", checkPasswordMatch);
-
-        authForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            clearMessages();
-
-            const user = username.value.trim();
-            const pass = password.value;
-
-            if (!user || !pass) {
-                errorMessage.textContent =
-                    "Please fill in all required fields.";
-                return;
-            }
-
-            if (pass.length < 4) {
-                errorMessage.textContent =
-                    "Password must be at least 4 characters.";
-                return;
-            }
-
-            if (!isLogin) {
-                const confirm = confirmPassword.value;
-
-                if (pass !== confirm) {
-                    errorMessage.textContent =
-                        "Passwords do not match.";
-                    return;
-                }
-
-                if (localStorage.getItem("username") !== null) {
-                    errorMessage.textContent =
-                        "An account is already saved in this browser. Login or clear the old demo account first.";
-                    return;
-                }
-
-                localStorage.setItem("username", user);
-                localStorage.setItem("password", pass);
-
-                alert("Account created successfully! You can now log in.");
-
-                toggleForm();
-                return;
-            }
-
-            const savedUsername = localStorage.getItem("username");
-            const savedPassword = localStorage.getItem("password");
-
-            if (
-    savedUsername !== null &&
-    user === savedUsername &&
-    pass === savedPassword
-) {
-    localStorage.setItem("isLoggedIn", "true");
-
-    alert("Welcome! Successfully logged in.");
-
-    window.location.href = "index.html";
+function clearMessages() {
+    errorMessage.textContent = "";
+    passwordMatchMessage.textContent = "";
+    passwordMatchMessage.className = "";
 }
-            } else {
-                errorMessage.textContent =
-                    "Invalid username or password. Please sign up first if you don't have an account.";
-            }
-        });
+
+function toggleForm(event) {
+    if (event) event.preventDefault();
+
+    isLogin = !isLogin;
+
+    authForm.reset();
+    clearMessages();
+
+    showPassword.checked = false;
+    password.type = "password";
+    confirmPassword.type = "password";
+
+    if (isLogin) {
+        formTitle.textContent = "Welcome Back!";
+        formSubtitle.textContent = "Login to your account";
+
+        confirmGroup.classList.add("hidden");
+        confirmPassword.required = false;
+        confirmPassword.disabled = true;
+
+        password.autocomplete = "current-password";
+        submitButton.textContent = "Login";
+
+        toggleText.innerHTML =
+            `Don't have an account? <a href="#" id="toggleLink">Sign Up</a>`;
+
+    } else {
+        formTitle.textContent = "Create Account";
+        formSubtitle.textContent = "Sign up to get started";
+
+        confirmGroup.classList.remove("hidden");
+        confirmPassword.required = true;
+        confirmPassword.disabled = false;
+
+        password.autocomplete = "new-password";
+        submitButton.textContent = "Sign Up";
+
+        toggleText.innerHTML =
+            `Already have an account? <a href="#" id="toggleLink">Login</a>`;
+    }
+
+    document.getElementById("toggleLink")
+        .addEventListener("click", toggleForm);
+}
+
+document.getElementById("toggleLink")
+    .addEventListener("click", toggleForm);
+
+// Show Password
+showPassword.addEventListener("change", function () {
+    const type = this.checked ? "text" : "password";
+
+    password.type = type;
+    confirmPassword.type = type;
+});
+
+// Check Password Match
+function checkPasswordMatch() {
+    if (!confirmPassword.value) {
+        passwordMatchMessage.textContent = "";
+        passwordMatchMessage.className = "";
+    } else if (password.value === confirmPassword.value) {
+        passwordMatchMessage.textContent = "Passwords match!";
+        passwordMatchMessage.className = "success-message";
+    } else {
+        passwordMatchMessage.textContent = "Passwords do not match.";
+        passwordMatchMessage.className = "error-message";
+    }
+}
+
+password.addEventListener("input", checkPasswordMatch);
+confirmPassword.addEventListener("input", checkPasswordMatch);
+
+// LOGIN AND SIGN UP
+authForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    clearMessages();
+
+    const user = username.value.trim();
+    const pass = password.value;
+
+    if (!user || !pass) {
+        errorMessage.textContent = "Please fill in all required fields.";
+        return;
+    }
+
+    if (pass.length < 4) {
+        errorMessage.textContent = "Password must be at least 4 characters.";
+        return;
+    }
+
+    // SIGN UP
+    if (!isLogin) {
+        const confirm = confirmPassword.value;
+
+        if (pass !== confirm) {
+            errorMessage.textContent = "Passwords do not match.";
+            return;
+        }
+
+        if (localStorage.getItem("username") !== null) {
+            errorMessage.textContent =
+                "An account is already saved. Please login using your existing account.";
+            return;
+        }
+
+        localStorage.setItem("username", user);
+        localStorage.setItem("password", pass);
+
+        alert("Account created successfully! Please login.");
+
+        toggleForm();
+        return;
+    }
+
+    // LOGIN
+    const savedUsername = localStorage.getItem("username");
+    const savedPassword = localStorage.getItem("password");
+
+    if (
+        savedUsername !== null &&
+        user === savedUsername &&
+        pass === savedPassword
+    ) {
+        // Save login status
+        localStorage.setItem("isLoggedIn", "true");
+
+        alert("Welcome! Successfully logged in.");
+
+        // OPEN YOUR WEBSITE
+        window.location.replace("./index.html");
+
+    } else {
+        errorMessage.textContent =
+            "Invalid username or password. Please check your account.";
+    }
+});
+
+            
     </script>
 
 </body>
