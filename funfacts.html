@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Fun Facts About Me</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <header>
+ <h1>Welcome to My Personal Website</h1>
+ </header>
+ <nav>
+ <ul>
+ <li><a href="index.html">HOME</a></li>
+ <li class="dropdown">
+ <a href="#" class="dropbtn">ABOUT</a>
+ <div class="dropdown-content">
+ <a href="skills.html">Skills I'm Developing</a>
+<a href="goals.html">My Goals as a Student</a>
+<a href="funfacts.html">Fun Facts About Me</a>
+ </div>
+ </li>
+ <li><a href="gallery.html">GALLERY</a></li>
+ <li><a href="contact.html">CONTACT</a></li>
+ <a href="javascript:void(0);" class="logout-button" onclick="confirmLogout()">LOG 
+OUT</a>
+ </ul>
+ </nav>
+ <section id="section2"></section>
+ <section id="drop">
+ <h2>Fun Facts About Me</h2>
+ <p>Welcome to my Fun Facts About Me!
+Discover my hobbies,interest,and favorite things that make me who I am. Let's explore a little more about me!. </p>
+ 
+ 
+ <div class="funfact-container">
+ <div class="funfact-card">
+ <div class="funfact-inner">
+ <div class="funfact-front">
+ <p>I Love Pastries 🧁</p>
+ </div>
+<div class="funfact-back">
+ <img src="funfacts1.jpg" alt="My favotite pastries" height="100" width="100">
+ <class="funfact-image">
+ <p>I love trying diffenrent kinds of pastries.</p>
+ </div>
+ </div>
+ </div>
+ <div class="funfact-card">
+ <div class="funfact-inner">
+ <div class="funfact-front">
+ <p>I Enjoy Watching Dramas 🎬</p>
+ </div>
+<div class="funfact-back">
+ <img src="funfact2.jpg" alt=" I enjoy watching dramas" height="100" width="100">
+ <p>I enjoy watching interesting stories and unexpected plot twist.</p>
+ </div>
+ </div>
+ </div>
+ <div class="funfact-card">
+ <div class="funfact-inner">
+ <div class="funfact-front">
+  <p>Music Is Part of My Life 🎧 </p>
+ </div>
+<div class="funfact-back">
+ <img src="funfact3.jpg" alt="music is part of my life" height="100" width="100">
+ <p>music helps me relax and set my mood .</p>
+ </div>
+ </div>
+ </div>
+ <div class="funfact-card">
+ <div class="funfact-inner">
+ <div class="funfact-front">
+ <p>I Appreciate Nature 🌿 </p>
+ </div>
+<div class="funfact-back">
+ <img src="funfact4.jpg" alt="I appreciate nature" height="100" width="100">
+ <p> Nature makes me feel calm and refreshed</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="funfact-container">
+ <div class="funfact-card">
+ <div class="funfact-inner">
+ <div class="funfact-front">
+ <p>I love Crocheting 🧶</p>
+ </div>
+<div class="funfact-back">
+ <img src="funfact5.jpg" alt="I love crocheting" height="100" width="100">
+ <p>crocheting allows me to be creative and patient.</p>
+ </div>
+ </div>
+ </div>
+ <div class="funfact-card">
+ <div class="funfact-inner">
+ <div class="funfact-front">
+ <p>I Enjoy Reading 📚</p>
+ </div>
+<div class="funfact-back">
+ <img src="funfact6.jpg" alte="I enjoy reading" heigth="100"width="100">
+ <p> reading let me discover new ideas and learn different things.</p>
+ </div>
+ </div>
+ </div>
+ <div class="funfact-card">
+ <div class="funfact-inner">
+ <div class="funfact-front">
+ <p>I Value Simple Moments 💙 </p>
+ </div>
+<div class="funfact-back">
+ <img src="funfact7.jpg" alt="I value simple moments" heigth="100"width="100">
+ <p>Small,happy moments can make my day special</p>
+ </div>
+ </div>
+ </div>
+ <div class="funfact-card">
+ <div class="funfact-inner">
+ <div class="funfact-front">
+ <p>I Have Big Dreams 🌟 </p>
+ </div>
+<div class="funfact-back">
+ <img src="funfact8.jpg" alt=" I have a big dreams" heigth="100"width="100">
+ <p> I want to achieve my goals and make my family proud</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+ 
+ <script>
+ // Logout function with confirmation
+ function confirmLogout() {
+ // Show a confirmation message to the user
+ const confirmLogout = confirm("Are you sure you want to log out?");
+ 
+ // If the user confirms, proceed with logging outif (confirmLogout) {
+ // Mark the user as logged out in localStorage (if used)
+ localStorage.removeItem('isLoggedIn'); // Or any other keys related to login 
+credentials
+ 
+ // Redirect to the login page
+ window.location.href = 'login.html';
+ } else {
+ // If the user cancels, do nothing
+ return;
+ }
+ }
+ 
+ </script>
+ <footer>
+ <p>&copy; 2026 Jelly Rose Y. Espares. All rights reserved.</p>
+ </footer>
+ <div class="footer-divider"></div> <!-- Orange line -->
+</body>
+</html>
